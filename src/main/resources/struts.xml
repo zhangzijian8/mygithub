@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+	<struts>
+	   <!--  -->
+	   <package name="common" namespace="/"  extends="json-default">
+	   
+	   
+	   </package>
+	 <!--  userHandel-->
+	  <package name="userHandel" namespace="/"  extends="common">
+	
+	      <action  name="*User" class="action.VoteUserAction" method="{1}">
+	        <!-- 成功 -->
+	         <result name="login_success">vote_list.jsp</result>	        
+	        <!-- 失败 -->
+	        <result name="login_error">login.jsp</result>	        
+	        <!--json  -->
+	        <result name="json_success" type="json">
+	           <param name="root" >resposeInfo</param>
+	        </result>
+	         
+	        <!-- 允许方法 -->
+	        <allowed-methods>register,login</allowed-methods>
+	     </action>
+	      <action  name="*Subject" class="action.VoteSubjectAction" method="{1}"> 
+	        <result name="json_success" type="json">
+	                <param name="root">pageSupport</param>
+	        </result>
+	        <result name="resposeInfo_success" type="json">
+	                <param name="root">resposeInfo</param>
+	        </result>
+	        <allowed-methods>load,add</allowed-methods>
+	      </action> 
+	      
+	   </package>
+	
+	
+	</struts>
